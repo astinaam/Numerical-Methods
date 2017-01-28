@@ -4,8 +4,9 @@ using namespace std;
 
 double Function(double x)
 {
+    return pow(x,10)-1;
     //return 4*pow(x,3)-6*pow(x,2)+7*x-2.3;     //f(x)=4x^3-6x^2+7x-2.3
-    return pow(x,2) - 3.0;                    //f(x)=x^2-3;
+    //return pow(x,2) - 3.0;                    //f(x)=x^2-3;
     //return 3*x+sin(x)-exp(x);                 //f(x)=3x+sin(x)-e^x;
     //return cos(x)-x*exp(x);                   //f(x)=cos(x)-x*e^x;
     //return x-exp(-x);                         //f(x)=x-e^-x;
@@ -58,14 +59,16 @@ int main()
         err *= 100.0;
         x = newx;
         cerr<<"Estimated error after iteration "<<iteration-1<<" : "<<setw(4)<<err<<" %"<<endl;
-        if(err <= Es)
+        //cerr<<Es<<" "<<err<<endl;
+        if(abs(Es-err) <= 1e-6)
         {
             cout<<"------------------------------------------------------------------------------"<<endl;
             cout<<"Root = "<<setw(4)<<newx<<" after "<<iteration-1<<" iterations."<<endl;
-            return 0;
+            main();
         }
     }
     while(iteration <= max_itr);
     cout<<"Root = "<<setw(4)<<x<<" after "<<iteration-1<<" iterations."<<endl;
+    main();
 }
 
